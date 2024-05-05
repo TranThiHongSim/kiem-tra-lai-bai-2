@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+body {
+    height: 100vh;
+    /* Loại bỏ overflow hidden */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 80%; /* Thay đổi chiều rộng từ 1200px thành 100% */
+    margin: auto;
+    overflow-x: auto; /* Cho phép cuộn ngang nếu nội dung vượt quá chiều rộng */
+    flex-wrap: nowrap; /* Ngăn chặn các phần tử tràn xuống dòng mới */
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    transition: 0.25s;
+}
+.image{
+width: calc(100% / 6); /* Thay đổi chiều rộng từ 20% thành 1/6 của wrapper */
+height: 200px;
+overflow: hidden;
+border-radius: 4px;
+margin: 20px 0;
+}
+
+.image:hover img {
+    transform: scale(1.2);
+}
+
+.show {
+    /* Đổi scale thành 1 */
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hide {
+    display: none;
+}
+
+.image img {
+transition: 0.25s;
+transform: scale(1); /* Đảm bảo ảnh không được chọn có kích thước bình thường */
+}
+
+.image img.dim {
+opacity: 0.5;
+transform: scale(0.5); /* Kích thước nhỏ hơn cho các ảnh không được chọn */
+}
+
+.image img.active {
+transform: scale(1); /* Phóng to ảnh được chọn */
+}
+
+
+.gallery {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: grey;
+    display: flex;
+    align-items: center;
+    color: antiquewhite;
+    /* Đổi scale thành 1 */
+    transform: scale(1);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    animation: zoomIn 0.5s ease forwards;
+    transform-origin: center;
+}
+
+.gallery_inner {
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+}
+
+.control {
+    font-size: 50px;
+    text-align: center;
+    color: rgb(255, 4, 0);
+    width: 5%;
+    border-color: white;
+}
+.control.prev {
+    left: 0px;
+}
+.control.next {
+    right: 0px;
+}
+.close {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 35px;
+}
+@keyframes zoomIn {
+from {
+transform: scale(0);
+}
+to {
+transform: scale(1);
+}
+}
+
